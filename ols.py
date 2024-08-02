@@ -21,11 +21,12 @@ class OLS:
         final_arr = (arr_x - mean_x)*(arr_y - mean_y)   # [(x-x_)*(y-y_) for x,y in zip(self.X, self.Y)]
         return np.sum(final_arr)
         
-    def linear(self, m, c):
-        Y = [m*x + c for x in self.X]
+    def linear(self, m, c, X):
+        print(m)
+        Y = [m*x + c for x in X]
         return Y
     
-    def slope(self):
+    def get_slope(self):
         x_ = self.get_mean(self.X)
         y_ = self.get_mean(self.Y)
         
@@ -34,7 +35,7 @@ class OLS:
         
         return covariance/variance
     
-    def intercept(self,m):
+    def get_intercept(self,m):
         x_ = self.get_mean(self.X)
         y_ = self.get_mean(self.Y)
         
@@ -42,10 +43,12 @@ class OLS:
         
         return c
     
-    def predict(self):
-        slope = self.slope()
-        intercept = self.intercept(slope)
-        predicted = self.linear(slope, intercept)
+    def fit_linear(self):
+        self.slope = self.get_slope()
+        self.intercept = self.get_intercept(self.slope)
+        
+    def predict(self, pred_X):
+        predicted = self.linear(self.slope, self.intercept, pred_X)
         return predicted
     
     def r_squared_error(self, Y_hat):
@@ -74,7 +77,7 @@ class OLS:
         
     
 if __name__ == '__main__':
-    data = pd.read_csv(r"Automobile_data.csv")
+    data = pd.read_csv(r"data/raw/Automobile_data.csv")
     data = data.loc[data['price']!='?']
     print(data['price'].value_counts()[:5])
     try:
@@ -85,7 +88,8 @@ if __name__ == '__main__':
     X = data['engine-size']
     Y = data['price']
     ols = OLS(X,Y)
-    predicted = ols.predict()
+    ols.fit_linear()
+    predicted = ols.predict(X)
     ols.plot(predicted)
         
         
