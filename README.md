@@ -19,4 +19,10 @@ Given y' - mean of dependent variable ; x' - mean of independent variable ; pred
                     
                     m = sum[(x-x')(y-y')] / sum[(x-x')^2]
 
+R-squared : 
+
+        Error  = Variance of target data points around the regression line / Variance of target data points around the mean
+        R-squared = 1 - Error
+        R-squared = 1 - sse/sst   #sse is error sum of squares & sst is total sum of squares
+        R-squared = 1 - sum[(y - y_hat)^2]/sum[(y - y_)^2]
 
