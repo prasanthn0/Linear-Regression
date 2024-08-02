@@ -3,28 +3,41 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-#Ordinary Least Squares
+#Ordinary Least Squares  - Calculating slope and y-intercept
 class OLS:
     def __init__(self, X , Y):
         self.X = X  # Series of independent variable
         self.Y = Y # Series of dependent variable
+        
+    def get_mean(self,arr):
+        return np.mean(arr)
+
+    # variance
+    def get_variance(self,arr, mean):
+        return np.sum((arr-mean)**2)
+
+    # covariance
+    def get_covariance(self,arr_x, mean_x, arr_y, mean_y):
+        final_arr = (arr_x - mean_x)*(arr_y - mean_y)   # [(x-x_)*(y-y_) for x,y in zip(self.X, self.Y)]
+        return np.sum(final_arr)
         
     def linear(self, m, c):
         Y = [m*x + c for x in self.X]
         return Y
     
     def slope(self):
-        x_ = np.mean(self.X)
-        y_ = np.mean(self.Y)
+        x_ = self.get_mean(self.X)
+        y_ = self.get_mean(self.Y)
         
-        covariance = sum([(x-x_)*(y-y_) for x,y in zip(self.X, self.Y)])
-        variance = sum([(x-x_)**2 for x in self.X])
+        covariance = self.get_covariance(self.X, x_, self.Y, y_)
+        variance = self.get_variance(self.X, x_)
         
         return covariance/variance
     
     def intercept(self,m):
-        x_ = np.mean(self.X)
-        y_ = np.mean(self.Y)
+        x_ = self.get_mean(self.X)
+        y_ = self.get_mean(self.Y)
+        
         c = y_ - (m * x_)
         
         return c
