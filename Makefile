@@ -43,10 +43,6 @@ activate_env: init_project
 	@echo "Activating the poetry environment..."
 	@$(POETRY) shell
 
-add_package:
-	@if [ -z "$(pkg)" ]; then \
-		echo "Please provide a package name, e.g., make add_dependency pkg=<package_name>"; \
-	else \
-		@echo "Adding dependency: $(pkg)"; \
-		@$(PYENV) exec $(POETRY) add $(pkg); \
-	fi
+data:
+	@echo "Creating dataset from booking_log and participant_log.."
+	${BINARIES}/python -m src.data.make_dataset

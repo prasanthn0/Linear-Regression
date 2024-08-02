@@ -1,0 +1,1 @@
+#check if there are irrelevant values like "?" , nulls , mis of data types

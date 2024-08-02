@@ -73,7 +73,7 @@ class OLS:
         plt.scatter(self.X, self.Y, color="#247ba0")
 
         # Save the plot as a PNG file
-        plt.savefig('predicted_values.png')
+        plt.savefig('outputs/ols/predicted_values.png')
         
     
 if __name__ == '__main__':
