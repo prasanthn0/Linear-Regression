@@ -17,10 +17,10 @@ class OLS:
         x_ = np.mean(self.X)
         y_ = np.mean(self.Y)
         
-        rise = sum([(x-x_)*(y-y_) for x,y in zip(self.X, self.Y)])
-        run = sum([(x-x_)**2 for x in self.X])
+        covariance = sum([(x-x_)*(y-y_) for x,y in zip(self.X, self.Y)])
+        variance = sum([(x-x_)**2 for x in self.X])
         
-        return rise/run
+        return covariance/variance
     
     def intercept(self,m):
         x_ = np.mean(self.X)
