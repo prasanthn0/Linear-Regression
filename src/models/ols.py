@@ -56,8 +56,8 @@ class OLS:
         # It is a measure of how close is the fitted data to the actual data . Larger the R-squared value , better is the fit
         y_ = np.mean(self.Y)
         
-        sse = sum([(y-y_hat)**2 for y,y_hat in zip(self.Y, Y_hat)])
-        sst = sum([(y-y_)**2 for y in self.Y])
+        sse = sum([(y-y_hat)**2 for y,y_hat in zip(self.Y, Y_hat)])      #self.get_variance(self.Y, Y_hat)
+        sst = sum([(y-y_)**2 for y in self.Y])                           #self.get_variance(self.Y, y_)
         
         r_sqr = 1 - (sse/sst)
         
