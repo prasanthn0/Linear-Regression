@@ -1,4 +1,4 @@
-# Linear-Regression
+# Linear-Regression by OLS [Ordinary Least Squares]
 
 y = mx + c 
 where 
